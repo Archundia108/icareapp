@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icareapp/pages/courses/my_course_list.dart';
+import 'package:icareapp/pages/lessons/my_course_list.dart';
 import 'package:icareapp/pages/home_page.dart';
 import 'package:icareapp/pages/login_screen.dart';
 import 'package:icareapp/pages/register_page.dart';
