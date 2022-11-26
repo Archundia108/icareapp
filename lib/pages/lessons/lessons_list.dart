@@ -17,7 +17,7 @@ class MyCourseList extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Text(
-                  'My Courses',
+                  'My lessons',
                   style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
@@ -40,7 +40,7 @@ class MyCourseList extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Text(
-                            "All Courses",
+                            "All lessons",
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
@@ -57,7 +57,7 @@ class MyCourseList extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Text(
-                            "Downloaded Courses",
+                            "Downloaded lessons",
                           ),
                         ),
                       ),
@@ -73,7 +73,7 @@ class MyCourseList extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Text(
-                            "Archived Courses",
+                            "Archived lessons",
                           ),
                         ),
                       ),
