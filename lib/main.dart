@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:icareapp/arguments/lesson_argument.dart';
+import 'package:icareapp/pages/lessons/lesson_details.dart';
 import 'package:icareapp/pages/lessons/lessons_list.dart';
 import 'package:icareapp/pages/home_page.dart';
 import 'package:icareapp/pages/login_screen.dart';
@@ -20,8 +22,15 @@ class MyApp extends StatelessWidget {
       routes: {
         "intro": (_) => LoginPage(),
         "home": (_) => HomePage(),
-        "mycourses": (_) => MyCourseList(),
-        "register": (_) => RegisterPage()
+        "mylessons": (_) => MyLessons(),
+        "register": (_) => RegisterPage(),
+      },
+      onGenerateRoute: (settings) {
+        if (settings.name == "lessonDetails") {
+          final args = settings.arguments as LessonArgument;
+          return MaterialPageRoute(
+              builder: (context) => LessonDetails(lesson: args.lesson));
+        }
       },
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:icareapp/arguments/lesson_argument.dart';
 import 'package:icareapp/model/lesson.dart';
 
 class LessonItem extends StatelessWidget {
@@ -19,7 +20,13 @@ class LessonItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                "lessonDetails",
+                arguments: LessonArgument(lesson),
+              );
+            },
             child: Column(
               children: [
                 Image.asset(lesson.thumbnailUrl),

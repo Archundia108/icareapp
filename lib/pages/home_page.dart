@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
             children: [
               Container(
                 height: 170,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.indigo,
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(25),
@@ -46,11 +46,11 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Cards(),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     CategoryList(),
@@ -64,7 +64,7 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, "mycourses");
+          Navigator.pushNamed(context, "mylessons");
         },
         child: Icon(Icons.home),
         backgroundColor: Colors.red[700],

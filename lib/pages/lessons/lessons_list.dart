@@ -3,8 +3,8 @@ import 'package:icareapp/lesson_model/lesson_provider.dart';
 import 'package:icareapp/widgets/lesson_item.dart';
 import 'package:icareapp/widgets/lesson_list.dart';
 
-class MyCourseList extends StatelessWidget {
-  const MyCourseList({super.key});
+class MyLessons extends StatelessWidget {
+  const MyLessons({super.key});
 
   @override
   Widget build(BuildContext context) {
