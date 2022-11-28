@@ -1,56 +1,66 @@
+import 'package:flutter/cupertino.dart';
 import 'package:icareapp/model/lesson_category.dart';
 import 'package:icareapp/model/section.dart';
+import 'dart:convert';
 
 class Lesson {
-  final String _id;
+  String? id;
+  String title;
+  String thumbnailUrl;
+  String description;
+  String createdDate;
+  double rate;
+  String lessonCategory;
+  String duration;
+  List<Section> sections = [];
 
-  final String _title;
+  Lesson({
+    this.id,
+    required this.title,
+    required this.thumbnailUrl,
+    required this.description,
+    required this.createdDate,
+    required this.rate,
+    required this.lessonCategory,
+    required this.duration,
+    //required this.sections,
+  });
 
-  final String _thumbnailUrl;
+  factory Lesson.fromJson(String str) => Lesson.fromMap(json.decode(str));
 
-  final String _description;
+  String toJson() => json.encode(toMap());
 
-  final String _createdDate;
+  factory Lesson.fromMap(Map<String, dynamic> json) => Lesson(
+        title: json["title"],
+        thumbnailUrl: json["thumbnailUrl"],
+        description: json["description"],
+        createdDate: json["createdDate"],
+        rate: json["rate"].toDouble(),
+        lessonCategory: json["lessonCategory"],
+        duration: json["duration"],
+        //sections: json[],
+      );
 
-  final double _rate;
+  Map<String, dynamic> toMap() => {
+        "title": title,
+        "thumbnailUrl": thumbnailUrl,
+        "description": description,
+        "createdDate": createdDate,
+        "rate": rate,
+        "lessonCategory": lessonCategory,
+        "duration": duration,
+        //"sections": sections,
+      };
 
-  final LessonCategory _lessonCategory;
-
-  final String _duration;
-
-  final int _sectionNo;
-
-  final List<Section> _sections;
-
-  Lesson(
-      this._id,
-      this._title,
-      this._thumbnailUrl,
-      this._description,
-      this._createdDate,
-      this._rate,
-      this._lessonCategory,
-      this._duration,
-      this._sectionNo,
-      this._sections);
-
-  double get rate => _rate;
-
-  String get createdDate => _createdDate;
-
-  String get description => _description;
-
-  String get thumbnailUrl => _thumbnailUrl;
-
-  String get title => _title;
-
-  String get id => _id;
-
-  LessonCategory get lessonCategory => _lessonCategory;
-
-  String get duration => _duration;
-
-  int get lessonNo => _sectionNo;
-
-  List<Section> get sections => _sections;
+  Lesson copy() => Lesson(
+        title: this.title,
+        thumbnailUrl: this.thumbnailUrl,
+        description: this.description,
+        id: this.id,
+        createdDate: this.createdDate,
+        rate: this.rate,
+        lessonCategory: this.lessonCategory,
+        duration: this.duration,
+        //sections: this.sections,
+      );
 }

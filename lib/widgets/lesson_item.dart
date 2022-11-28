@@ -3,9 +3,9 @@ import 'package:icareapp/arguments/lesson_argument.dart';
 import 'package:icareapp/model/lesson.dart';
 
 class LessonItem extends StatelessWidget {
-  const LessonItem({super.key, required this.lesson});
-
   final Lesson lesson;
+
+  const LessonItem({Key? key, required this.lesson}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class LessonItem extends StatelessWidget {
             },
             child: Column(
               children: [
-                Image.asset(lesson.thumbnailUrl),
+                Image.network(lesson.thumbnailUrl),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
                   child: Column(

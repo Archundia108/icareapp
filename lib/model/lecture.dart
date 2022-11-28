@@ -1,11 +1,32 @@
+import 'dart:convert';
+
 class Lecture {
-  final String _name;
+  String? lectureId;
+  String nameL;
+  String durationL;
 
-  final String _duration;
+  Lecture({
+    this.lectureId,
+    required this.nameL,
+    required this.durationL,
+  });
 
-  Lecture(this._name, this._duration);
+  factory Lecture.fromJson(String str) => Lecture.fromMap(json.decode(str));
 
-  String get duration => _duration;
+  String toJson() => json.encode(toMap());
 
-  String get name => _name;
+  factory Lecture.fromMap(Map<String, dynamic> json) => Lecture(
+        nameL: json["name"],
+        durationL: json["durationL"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "name": nameL,
+        "duration": durationL,
+      };
+
+  Lecture copy() => Lecture(
+        nameL: this.nameL,
+        durationL: this.durationL,
+      );
 }

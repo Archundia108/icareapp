@@ -1,13 +1,34 @@
+import 'dart:convert';
+
 import 'package:icareapp/model/lecture.dart';
 
 class Section {
-  final String _name;
+  String? sectionId;
+  String name;
+  List<Lecture> lectures;
 
-  final List<Lecture> _lectures;
+  Section({
+    this.sectionId,
+    required this.name,
+    required this.lectures,
+  });
 
-  Section(this._name, this._lectures);
+  factory Section.fromJson(String str) => Section.fromMap(json.decode(str));
 
-  List<Lecture> get lectures => _lectures;
+  String toJson() => json.encode(toMap());
 
-  String get name => _name;
+  factory Section.fromMap(Map<String, dynamic> json) => Section(
+        name: json["name"],
+        lectures: json["lectures"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "name": name,
+        "lectures": lectures,
+      };
+
+  Section copy() => Section(
+        name: this.name,
+        lectures: this.lectures,
+      );
 }

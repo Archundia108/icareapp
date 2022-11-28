@@ -50,7 +50,7 @@ class LessonDetails extends StatelessWidget {
                           ClipRRect(
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10)),
-                            child: Image.asset(lesson.thumbnailUrl),
+                            child: Image.network(lesson.thumbnailUrl),
                           ),
                         ],
                       ),
@@ -93,7 +93,7 @@ class LessonDetails extends StatelessWidget {
                                       width: 10,
                                     ),
                                     Text(
-                                      '${lesson.lessonNo} lectures',
+                                      '2 lectures',
                                       style: greyTextStyle,
                                     ),
                                   ],
@@ -159,33 +159,33 @@ class LessonDetails extends StatelessWidget {
                             const SizedBox(
                               height: 20,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  "Lesson content",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                                Text(
-                                  '(${lesson.sections.length} sections)',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.grey.shade700,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: lesson.sections.length,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return buildLessonContent(index);
-                              },
-                            )
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //   children: [
+                            //     const Text(
+                            //       "Lesson content",
+                            //       style: TextStyle(
+                            //         fontWeight: FontWeight.bold,
+                            //         fontSize: 20,
+                            //       ),
+                            //     ),
+                            //     Text(
+                            //       '(${lesson.sections.length} sections)',
+                            //       style: TextStyle(
+                            //         fontSize: 16,
+                            //         color: Colors.grey.shade700,
+                            //       ),
+                            //     ),
+                            //   ],
+                            // ),
+                            // ListView.builder(
+                            //   shrinkWrap: true,
+                            //   itemCount: lesson.sections.length,
+                            //   physics: const NeverScrollableScrollPhysics(),
+                            //   itemBuilder: (context, index) {
+                            //     return buildLessonContent(index);
+                            //   },
+                            // )
                           ],
                         ),
                       ),
@@ -233,42 +233,42 @@ class LessonDetails extends StatelessWidget {
     );
   }
 
-  Widget buildLessonContent(int index) {
-    Section section = lesson.sections[index];
-    return ExpansionTile(
-      title: Text(
-        "Section ${index + 1} - ${section.name}",
-        style: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      children: section.lectures.map((lecture) {
-        return ListTile(
-          dense: true,
-          onTap: () {},
-          leading: const SizedBox(),
-          title: Text(lecture.name),
-          subtitle: Row(
-            children: [
-              const Icon(
-                Icons.access_time,
-                size: 15,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Text(
-                lecture.duration,
-                style: TextStyle(
-                  color: Colors.grey.shade500,
-                  fontSize: 15,
-                ),
-              ),
-            ],
-          ),
-        );
-      }).toList(),
-    );
-  }
+  // Widget buildLessonContent(int index) {
+  //   Section section = lesson.sections[index];
+  //   return ExpansionTile(
+  //     title: Text(
+  //       "Section ${index + 1} - ${section.name}",
+  //       style: const TextStyle(
+  //         fontSize: 18,
+  //         fontWeight: FontWeight.bold,
+  //       ),
+  //     ),
+  //     children: section.lectures.map((lecture) {
+  //       return ListTile(
+  //         dense: true,
+  //         onTap: () {},
+  //         leading: const SizedBox(),
+  //         title: Text(lecture.name),
+  //         subtitle: Row(
+  //           children: [
+  //             const Icon(
+  //               Icons.access_time,
+  //               size: 15,
+  //             ),
+  //             const SizedBox(
+  //               width: 10,
+  //             ),
+  //             Text(
+  //               lecture.duration,
+  //               style: TextStyle(
+  //                 color: Colors.grey.shade500,
+  //                 fontSize: 15,
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //       );
+  //     }).toList(),
+  //   );
+  // }
 }
