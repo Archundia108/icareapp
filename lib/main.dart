@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'iCare course',
-      initialRoute: "home",
+      initialRoute: "intro",
       routes: {
         "intro": (_) => LoginPage(),
         "home": (_) => HomePage(),

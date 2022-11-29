@@ -155,10 +155,10 @@ class _Login extends StatelessWidget {
                   if (!loginForm.isValidForm()) return;
                   final authService =
                       Provider.of<AuthService>(context, listen: false);
-                  final String? resp = await authService.crearUsuario(
+                  final String? resp = await authService.login(
                       loginForm.email, loginForm.password);
                   if (resp == null) {
-                    Navigator.pop(context);
+                    Navigator.pushReplacementNamed(context, 'home');
                   } else {
                     // print(resp);
                     if (resp == "INVALID_PASSWORD" || resp == "EMAIL_NOT_FOUND") {
