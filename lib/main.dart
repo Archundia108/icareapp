@@ -52,6 +52,7 @@ class MyApp extends StatelessWidget {
         "home": (_) => HomePage(),
         "mylessons": (_) => MyLessons(),
         "register": (_) => RegisterPage(),
+        "mylessons":(_)=> MyLessons(),
       },
       onGenerateRoute: (settings) {
         if (settings.name == "lessonDetails") {

@@ -6,6 +6,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:icareapp/model/lecture.dart';
 import 'package:icareapp/model/section.dart';
+import 'package:icareapp/services/lesson_service.dart';
+import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 
 import '../../model/lesson.dart';
@@ -222,7 +224,14 @@ class LessonDetails extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.indigo,
                         ),
-                        onPressed: () {},
+                        onPressed: () async {
+                          final lessonService = Provider.of<LessonService>(context, listen: false);                          
+                          final String? resp = await lessonService.agregarLesson(lesson.id!);
+                          await lessonService.obtainLessonsUser();
+                          await lessonService.filterLessonsByUserID();
+                          Navigator.pushReplacementNamed(context, 'mylessons');
+                          print(resp);
+                        },
                         child: const Text(
                           "Add lesson",
                           style: TextStyle(

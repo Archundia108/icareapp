@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icareapp/providers/login_from_providers.dart';
 import 'package:icareapp/services/auth_service.dart';
+import 'package:icareapp/services/lesson_service.dart';
 import 'package:icareapp/widgets/cards_container.dart';
 import 'package:icareapp/widgets/fondo_login.dart';
 import 'package:provider/provider.dart';
@@ -157,16 +158,16 @@ class _Login extends StatelessWidget {
                       Provider.of<AuthService>(context, listen: false);
                   final String? resp = await authService.login(
                       loginForm.email, loginForm.password);
-                  if (resp == null) {
-                    Navigator.pushReplacementNamed(context, 'home');
-                  } else {
-                    // print(resp);
                     if (resp == "INVALID_PASSWORD" || resp == "EMAIL_NOT_FOUND") {
                       var snackBar = SnackBar(
                         content: Text("Usuario o contraseña incorrectos!"),
                       );
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    }
+                    }else {
+                      final lessonService =
+                      Provider.of<LessonService>(context, listen: false);                      
+                      lessonService.idUsuario = resp!;
+                      Navigator.pushReplacementNamed(context, 'home');
                   }
                 }),
           ],

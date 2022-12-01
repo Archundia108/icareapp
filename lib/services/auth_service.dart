@@ -42,7 +42,7 @@ class AuthService extends ChangeNotifier {
     print(decodedResp);
 
     if (decodedResp.containsKey('idToken')) {
-      return null;
+      return decodedResp['localId'];
     } else {
       return decodedResp['error']['message'];
     }
