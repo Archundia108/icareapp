@@ -1,6 +1,7 @@
 # icareapp
 
 A new Flutter project.
+Utilizar juan@gmail.com contraseña: 12345678, para acceder a la aplicación
 
 ## Getting Started
 
