@@ -1,6 +1,6 @@
 # icareapp
   
-Pues camara ya quedo lo de add lessons y el filtrado de lecciones por usuario, si le quieres agregar otra cosa por tu cuenta está bien. Atentamente el mencho.
+Pues camara ya quedo lo de add lessons y el filtrado de lecciones por usuario, si le quieres agregar otra cosa por tu cuenta está bien. Atentamente el mencho.  
 A new Flutter project.  
 Utilizar juan@gmail.com contraseña: 12345678, para acceder a la aplicación
 
