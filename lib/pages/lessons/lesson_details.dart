@@ -4,15 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:icareapp/model/lecture.dart';
 import 'package:icareapp/model/section.dart';
 import 'package:readmore/readmore.dart';
 
 import '../../model/lesson.dart';
 
 class LessonDetails extends StatelessWidget {
-  const LessonDetails({super.key, required this.lesson});
+  const LessonDetails({
+    super.key,
+    required this.lesson,
+    //required this.section,
+    //required this.lecture,
+  });
 
   final Lesson lesson;
+  //final Section section;
+  //final Lecture lecture;
 
   @override
   Widget build(BuildContext context) {

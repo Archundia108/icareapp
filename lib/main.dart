@@ -6,7 +6,9 @@ import 'package:icareapp/pages/home_page.dart';
 import 'package:icareapp/pages/login_screen.dart';
 import 'package:icareapp/pages/register_page.dart';
 import 'package:icareapp/services/auth_service.dart';
+import 'package:icareapp/services/lecture_service.dart';
 import 'package:icareapp/services/lesson_service.dart';
+import 'package:icareapp/services/section_service.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -23,6 +25,12 @@ class AppState extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => AuthService(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SectionService(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => LectureService(),
         ),
       ],
       child: MyApp(),
@@ -49,7 +57,11 @@ class MyApp extends StatelessWidget {
         if (settings.name == "lessonDetails") {
           final args = settings.arguments as LessonArgument;
           return MaterialPageRoute(
-              builder: (context) => LessonDetails(lesson: args.lesson));
+              builder: (context) => LessonDetails(
+                    lesson: args.lesson,
+                    //section: args.section,
+                    //lecture: args.lecture,
+                  ));
         }
       },
     );

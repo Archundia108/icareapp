@@ -5,12 +5,12 @@ import 'package:icareapp/model/lecture.dart';
 class Section {
   String? sectionId;
   String name;
-  List<Lecture> lectures;
+  String lessonID;
 
   Section({
     this.sectionId,
     required this.name,
-    required this.lectures,
+    required this.lessonID,
   });
 
   factory Section.fromJson(String str) => Section.fromMap(json.decode(str));
@@ -19,16 +19,16 @@ class Section {
 
   factory Section.fromMap(Map<String, dynamic> json) => Section(
         name: json["name"],
-        lectures: json["lectures"],
+        lessonID: json["lessonID"],
       );
 
   Map<String, dynamic> toMap() => {
         "name": name,
-        "lectures": lectures,
+        "lessonID": lessonID,
       };
 
   Section copy() => Section(
         name: this.name,
-        lectures: this.lectures,
+        lessonID: this.lessonID,
       );
 }

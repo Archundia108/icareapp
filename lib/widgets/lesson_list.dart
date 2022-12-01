@@ -3,7 +3,9 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:icareapp/lesson_model/lesson_provider.dart';
 import 'package:icareapp/model/lesson.dart';
+import 'package:icareapp/services/lecture_service.dart';
 import 'package:icareapp/services/lesson_service.dart';
+import 'package:icareapp/services/section_service.dart';
 import 'package:icareapp/widgets/lesson_item.dart';
 import 'package:provider/provider.dart';
 
@@ -13,23 +15,23 @@ class LessonList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final lessonService = Provider.of<LessonService>(context);
+    final sectionsService = Provider.of<SectionService>(context);
+    final lectureService = Provider.of<LectureService>(context);
 
-    return GridView.count(
-      crossAxisCount: 2,
+    return GridView.builder(
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 300,
+      ),
+      itemCount: lessonService.lessons.length,
       shrinkWrap: true,
       physics: const ScrollPhysics(),
-      children: [
-        ListView.builder(
-            itemCount: lessonService.lessons.length,
-            itemBuilder: (BuildContext context, int index) => GestureDetector(
-                  child: LessonItem(
-                    lesson: lessonService.lessons[index],
-                  ),
-                )),
-      ],
-      // children: LessonProvider.lessonList.map((lesson) {
-      //   return LessonItem(lesson: lesson);
-      // }).toList(),
+      itemBuilder: (BuildContext context, int index) => GestureDetector(
+        child: LessonItem(
+          lesson: lessonService.lessons[index],
+          //section: sectionsService.sections[index],
+          //lecture: lectureService.lectures[index],
+        ),
+      ),
     );
   }
 }

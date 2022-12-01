@@ -12,7 +12,6 @@ class Lesson {
   double rate;
   String lessonCategory;
   String duration;
-  List<Section> sections = [];
 
   Lesson({
     this.id,
@@ -23,7 +22,6 @@ class Lesson {
     required this.rate,
     required this.lessonCategory,
     required this.duration,
-    //required this.sections,
   });
 
   factory Lesson.fromJson(String str) => Lesson.fromMap(json.decode(str));
@@ -38,7 +36,6 @@ class Lesson {
         rate: json["rate"].toDouble(),
         lessonCategory: json["lessonCategory"],
         duration: json["duration"],
-        //sections: json[],
       );
 
   Map<String, dynamic> toMap() => {
@@ -49,7 +46,6 @@ class Lesson {
         "rate": rate,
         "lessonCategory": lessonCategory,
         "duration": duration,
-        //"sections": sections,
       };
 
   Lesson copy() => Lesson(
@@ -61,6 +57,5 @@ class Lesson {
         rate: this.rate,
         lessonCategory: this.lessonCategory,
         duration: this.duration,
-        //sections: this.sections,
       );
 }
