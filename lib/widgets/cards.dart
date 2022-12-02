@@ -61,16 +61,16 @@ class _CardsState extends State<Cards> {
                     color: Colors.grey.shade800,
                   ),
                 ),
-                InkWell(
-                  onTap: () {},
-                  child: Text(
-                    "See all",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 15,
-                    ),
-                  ),
-                ),
+                // InkWell(
+                //   onTap: () {},
+                //   child: Text(
+                //     "See all",
+                //     style: TextStyle(
+                //       color: Colors.blue,
+                //       fontSize: 15,
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ],
