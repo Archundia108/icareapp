@@ -6,7 +6,9 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:icareapp/model/lecture.dart';
 import 'package:icareapp/model/section.dart';
+import 'package:icareapp/services/lecture_service.dart';
 import 'package:icareapp/services/lesson_service.dart';
+import 'package:icareapp/services/section_service.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 
@@ -27,6 +29,8 @@ class LessonDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var greyTextStyle = TextStyle(fontSize: 15, color: Colors.grey.shade800);
+    final sectionService = Provider.of<SectionService>(context);
+    final lectureService = Provider.of<LectureService>(context);
 
     return Scaffold(
       body: SafeArea(
@@ -169,33 +173,37 @@ class LessonDetails extends StatelessWidget {
                             const SizedBox(
                               height: 20,
                             ),
-                            // Row(
-                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            //   children: [
-                            //     const Text(
-                            //       "Lesson content",
-                            //       style: TextStyle(
-                            //         fontWeight: FontWeight.bold,
-                            //         fontSize: 20,
-                            //       ),
-                            //     ),
-                            //     Text(
-                            //       '(${lesson.sections.length} sections)',
-                            //       style: TextStyle(
-                            //         fontSize: 16,
-                            //         color: Colors.grey.shade700,
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
-                            // ListView.builder(
-                            //   shrinkWrap: true,
-                            //   itemCount: lesson.sections.length,
-                            //   physics: const NeverScrollableScrollPhysics(),
-                            //   itemBuilder: (context, index) {
-                            //     return buildLessonContent(index);
-                            //   },
-                            // )
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  "Lesson content",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                Text(
+                                  '(${sectionService.sections.length} sections)',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.grey.shade700,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: sectionService.sections.length,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, index) {
+                                return buildLessonContent(
+                                  index,
+                                  sectionService.sections[index],
+                                  // lectureService.lectures[index],
+                                );
+                              },
+                            )
                           ],
                         ),
                       ),
@@ -225,8 +233,11 @@ class LessonDetails extends StatelessWidget {
                           backgroundColor: Colors.indigo,
                         ),
                         onPressed: () async {
-                          final lessonService = Provider.of<LessonService>(context, listen: false);                          
-                          final String? resp = await lessonService.agregarLesson(lesson.id!);
+                          final lessonService = Provider.of<LessonService>(
+                              context,
+                              listen: false);
+                          final String? resp =
+                              await lessonService.agregarLesson(lesson.id!);
                           await lessonService.obtainLessonsUser();
                           await lessonService.filterLessonsByUserID();
                           Navigator.pushReplacementNamed(context, 'mylessons');
@@ -250,42 +261,46 @@ class LessonDetails extends StatelessWidget {
     );
   }
 
-  // Widget buildLessonContent(int index) {
-  //   Section section = lesson.sections[index];
-  //   return ExpansionTile(
-  //     title: Text(
-  //       "Section ${index + 1} - ${section.name}",
-  //       style: const TextStyle(
-  //         fontSize: 18,
-  //         fontWeight: FontWeight.bold,
-  //       ),
-  //     ),
-  //     children: section.lectures.map((lecture) {
-  //       return ListTile(
-  //         dense: true,
-  //         onTap: () {},
-  //         leading: const SizedBox(),
-  //         title: Text(lecture.name),
-  //         subtitle: Row(
-  //           children: [
-  //             const Icon(
-  //               Icons.access_time,
-  //               size: 15,
-  //             ),
-  //             const SizedBox(
-  //               width: 10,
-  //             ),
-  //             Text(
-  //               lecture.duration,
-  //               style: TextStyle(
-  //                 color: Colors.grey.shade500,
-  //                 fontSize: 15,
-  //               ),
-  //             ),
-  //           ],
-  //         ),
-  //       );
-  //     }).toList(),
-  //   );
-  // }
+  Widget buildLessonContent(
+    int index,
+    Section section,
+    // Lecture lecture,
+  ) {
+    //Section section = lesson.sections[index];
+    return ExpansionTile(
+      title: Text(
+        "Section ${index + 1} - ${section.name}",
+        style: const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      // children: [
+      //   ListTile(
+      //     dense: true,
+      //     onTap: () {},
+      //     leading: const SizedBox(),
+      //     title: Text(lecture.nameL),
+      //     subtitle: Row(
+      //       children: [
+      //         const Icon(
+      //           Icons.access_time,
+      //           size: 15,
+      //         ),
+      //         const SizedBox(
+      //           width: 10,
+      //         ),
+      //         Text(
+      //           lecture.durationL,
+      //           style: TextStyle(
+      //             color: Colors.grey.shade500,
+      //             fontSize: 15,
+      //           ),
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ],
+    );
+  }
 }

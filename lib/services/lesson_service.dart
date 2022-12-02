@@ -15,8 +15,8 @@ class LessonService extends ChangeNotifier {
 
   final List<Lesson> lessons = [];
   final List<LessonUser> lessonsUser = [];
-  final List<LessonUser> lessonsUserFiltered = [];  
-  final List<Lesson> lessonsFiltered = [];  
+  final List<LessonUser> lessonsUserFiltered = [];
+  final List<Lesson> lessonsFiltered = [];
 
   //final List<Section> sections = [];
   //final List<Lecture> lectures = [];
@@ -70,9 +70,10 @@ class LessonService extends ChangeNotifier {
   }
 
   Future filterLessonsByUserID() async {
-    var contain = this.lessonsUser.where(
-        (element) => element.idUsuario == this.idUsuario);
-      // print(contain);
+    var contain = this
+        .lessonsUser
+        .where((element) => element.idUsuario == this.idUsuario);
+    // print(contain);
     this.lessonsUserFiltered.clear();
     contain.forEach((element) {
       this.lessonsUserFiltered.add(element);
@@ -80,17 +81,18 @@ class LessonService extends ChangeNotifier {
 
     this.lessonsFiltered.clear();
     lessonsUserFiltered.forEach((elementLessonUser) {
-      var contain = this.lessons.where(
-          (element) => element.id == elementLessonUser.idLesson);  
+      var contain = this
+          .lessons
+          .where((element) => element.id == elementLessonUser.idLesson);
       contain.forEach((element) {
         this.lessonsFiltered.add(element);
-      });          
+      });
     });
-
   }
+
   Future agregarLesson(String id) async {
-    print("ID Lesson:"+id);
-    print("idUsuario: "+this.idUsuario);
+    print("ID Lesson:" + id);
+    print("idUsuario: " + this.idUsuario);
     // isSaving = true;
     notifyListeners();
     final url = Uri.https(_baseUrl, "lessonsUser.json");
@@ -102,10 +104,10 @@ class LessonService extends ChangeNotifier {
     // this.instituciones.add(institucion);
     // this.resultados.add(institucion);
     // this.institucionesGuest.add(institucion);
-    // this.resultadosGuest.add(institucion);    
+    // this.resultadosGuest.add(institucion);
     // isSaving = false;
     notifyListeners();
-    // return institucion.id!;    
+    // return institucion.id!;
     return 'ok';
   }
 
